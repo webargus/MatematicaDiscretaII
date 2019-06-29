@@ -24,51 +24,43 @@ def mdc(p, q):      # função auxiliar recursiva que retorna o MDC entre dois i
     return mdc(q, r)
 
 
-#   Loop para entrada e validação dos dados
-while 1:
-    try:
-        a, m = [int(x) for x in input("Entre o par (a, m) separado por espaço: ").split()]
-        if (a >= m) or (a < 0) or (m < 2):
-            raise ValueError
-        print("(a, m) = (%d, %d)" % (a, m))
-        b, n = [int(x) for x in input("Entre o par (b, n) separado por espaço: ").split()]
-        if (b >= n) or (b < 0) or (n < 2):
-            raise ValueError
-        print("(b, n) = (%d, %d)" % (b, n))
-        break
-    except ValueError:
-        print("Entrada inválida! Por favor, entre novamente os dados.")
+def checa_mdc(m, n):
+    # (a) para o sistema ter solução, é necessário que o MDC entre m e n seja = 1
+    MDC = mdc(m, n)
+    ret = "MDC(%d, %d) = %d" % (m, n, MDC)
 
-# (a) para o sistema ter solução, é necessário que o MDC entre m e n seja = 1
-MDC = mdc(m, n)
-print("MDC(%d, %d) = %d" % (m, n, MDC))
+    if MDC != 1:
+        flag = False
+        ret += "\nO sistema não tem solução, pois m e n não são primos entre si."
+    else:
+        flag = True
+        ret += "\nO sistema tem solução"
 
-if MDC != 1:
-    print("O sistema não tem solução, pois m e n não são primos entre si.")
-    exit()
-print("...calculando...dependendo das entradas, isso pode levar alguns minutos...")
+    return flag, ret
+
 
 #  (b) simulação de preenchimento de matriz m X n para mimetizar o método geométrico
-x = y = s = 0
-while 1:
-    #  print("(x, y) = (%d, %d)" % (x, y))  # debug
-    if x == a and y == b:   # bingo! chegamos à linha (x) e coluna (y) dadas por (a, b)
-        break
-    # incrementa a linha (x), a coluna (y) e o resultado correspondente à posição (x, y)
-    s += 1
-    x += 1
-    y += 1
-    # sai do loop qdo percorrer toda a matriz
-    if x == m and y == n:
-        break
-    # retorna para a posição 0 quando a posição na linha cai fora da matriz
-    if x == m:
-        x = 0
-    # retorna para a posição 0 quando a posição na coluna cai fora da matriz
-    if y == n:
-        y = 0
+def metodo_geometrico(a, b, m, n):
+    x = y = s = 0
+    while 1:
+        #  print("(x, y) = (%d, %d)" % (x, y))  # debug
+        if x == a and y == b:   # bingo! chegamos à linha (x) e coluna (y) dadas por (a, b)
+            break
+        # incrementa a linha (x), a coluna (y) e o resultado correspondente à posição (x, y)
+        s += 1
+        x += 1
+        y += 1
+        # sai do loop qdo percorrer toda a matriz
+        if x == m and y == n:
+            break
+        # retorna para a posição 0 quando a posição na linha cai fora da matriz
+        if x == m:
+            x = 0
+        # retorna para a posição 0 quando a posição na coluna cai fora da matriz
+        if y == n:
+            y = 0
 
-print("Solução: s = %d" % s)
+    return "Solução: s = %d" % s
 
 
 

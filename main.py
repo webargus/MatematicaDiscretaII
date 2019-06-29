@@ -5,6 +5,7 @@ import L2Panel
 import C1Panel
 import F2Panel
 import I2Panel
+import R1Panel
 
 
 class Gui(Frame):
@@ -39,6 +40,7 @@ class Gui(Frame):
         C1Panel.C1Panel(self.nb_files[1][1])
         F2Panel.F2Panel(self.nb_files[2][1])
         I2Panel.I2Panel(self.nb_files[3][1])
+        R1Panel.R1Panel(self.nb_files[4][1])
 
         frame = Frame(self)
         frame.grid({"row": 0, "column": 1, "sticky": NSEW, "pady": 4, "padx": 4})
