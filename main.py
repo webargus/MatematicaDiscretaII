@@ -12,12 +12,11 @@ class Gui(Frame):
 
     def __init__(self):
         Frame.__init__(self)
-        # self.master.iconbitmap(tools.icon32)
-        # tools.StaticImages()
-        #self.master.wm_minsize(800, 600)
+        self.master.iconbitmap("brasao32.ico")
+        self.master.resizable(0, 0)
+        self.master.geometry("1120x600")
         self.master.state('normal')
         self.master.title("Matemática Discreta")
-        # tools.center_window(self.master)
         self.master.grid_rowconfigure(0, weight=1)
         self.master.grid_columnconfigure(0, weight=1)
         self.grid({"row": 0, "column": 0, "sticky": NSEW})
