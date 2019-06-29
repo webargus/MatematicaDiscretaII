@@ -40,7 +40,8 @@ class I2Panel:
                   "font": ("Arial", 10),
                   "command": self._submit_form
                   }
-        Button(form, params).grid({"row": 0, "column": 4, "padx": 4, "pady": 8, "sticky": W})
+        self.btn = Button(form, params)
+        self.btn.grid({"row": 0, "column": 4, "padx": 4, "pady": 8, "sticky": W})
 
         text = Frame(wrap, {"pady": 8, "padx": 8})
         text.grid({"row": 2, "column": 0, "sticky": NSEW})
@@ -58,16 +59,17 @@ class I2Panel:
                                  "Entrada inválida!\nEntre um inteiro > 1.")
             return
 
-        if self.radio.get() == 0:
-            bool = I2.is_prime(n)
-        else:
-            bool = I2.is_prime_naif(n)
+        self.text.append_text("\n...processando...\n")
+        self.btn.configure(state="disabled")
+        I2.check_prime_thread(n, self.radio.get(), self.report)
 
+    def report(self, flag, n):
         s = "%d "
-        if not bool:
+        if not flag:
             s += "não "
         s += "é primo."
 
         self.text.append_text("\n" + (s % n))
         self.text.append_text("\n" + "_"*50 + "\n")
+        self.btn.configure(state="normal")
 

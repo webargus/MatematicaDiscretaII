@@ -18,6 +18,7 @@
     do inteiro cuja primalidade queremos verificar.
 '''
 
+from threading import  Thread
 
 # função auxiliar para verificar se um inteiro é primo
 # algoritmo seletivo(ingênuo?): descarta o teste de divisibilidade quando o inteiro é par e
@@ -44,7 +45,23 @@ def is_prime_naif(nn):
     return True
 
 
+# funções auxiliares para realizar a primalidade em threads e evitar o travamento
+# do processo, dependendo do inteiro pesquisado
 
+def _is_prime_thread(n, callback):
+    callback(is_prime(n), n)
+
+
+def is_prime_naif_thread(n, callback):
+    callback(is_prime_naif(n), n)
+
+
+def check_prime_thread(n, option, callback):
+    if option == 0:
+        thread = Thread(target=_is_prime_thread, args=(n, callback))
+    else:
+        thread = Thread(target=is_prime_naif_thread, args=(n, callback))
+    thread.start()
 
 
 

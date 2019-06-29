@@ -41,7 +41,7 @@ def checa_mdc(m, n):
     return flag, ret
 
 
-# chamada de thread para evitar travamento da GUI enquanto calculando a solução pelo
+# chamada de thread para evitar travamento do processamento enquanto calculando a solução pelo
 # método geométrico; dependendo do tamanho da matriz, o processamento pode
 # consumir muito tempo.
 def metodo_geometrico(a, b, m, n, callback):
