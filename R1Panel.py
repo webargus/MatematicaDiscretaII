@@ -49,7 +49,8 @@ class R1Panel:
                   "font": ("Arial", 10),
                   "command": self._submit_form
                   }
-        Button(form, params).grid({"row": 1, "column": 4, "padx": 4, "pady": 8, "sticky": W})
+        self.btn = Button(form, params)
+        self.btn.grid({"row": 1, "column": 4, "padx": 4, "pady": 8, "sticky": W})
 
         text = Frame(wrap, {"pady": 8, "padx": 8})
         text.grid({"row": 2, "column": 0, "sticky": NSEW})
@@ -78,6 +79,7 @@ class R1Panel:
         if flag:
             self.text.append_text("\n\ndependendo das entradas, isso pode levar alguns minutos\n")
             self.text.append_text("...calculando...\n")
+            self.btn.configure(state="disabled")
             R1.metodo_geometrico(a, b, m, n, self.callback)
         else:
             self.text.append_text("\n" + "_" * 55 + "\n")
@@ -85,5 +87,6 @@ class R1Panel:
     def callback(self, param):
         self.text.append_text(param)
         self.text.append_text("\n" + "_"*55 + "\n")
+        self.btn.configure(state="normal")
 
 
