@@ -78,6 +78,12 @@ class R1Panel:
         if flag:
             self.text.append_text("\n\ndependendo das entradas, isso pode levar alguns minutos\n")
             self.text.append_text("...calculando...\n")
-            self.text.append_text(R1.metodo_geometrico(a, b, m, n))
-        self.text.append_text("\n" + "_"*60 + "\n")
+            R1.metodo_geometrico(a, b, m, n, self.callback)
+        else:
+            self.text.append_text("\n" + "_" * 55 + "\n")
+
+    def callback(self, param):
+        self.text.append_text(param)
+        self.text.append_text("\n" + "_"*55 + "\n")
+
 

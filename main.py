@@ -16,7 +16,7 @@ class Gui(Frame):
         self.master.resizable(0, 0)
         self.master.geometry("1120x600")
         self.master.state('normal')
-        self.master.title("Matemática Discreta")
+        self.master.title("Matemática Discreta - Trabalho 1 - SI2019.1")
         self.master.grid_rowconfigure(0, weight=1)
         self.master.grid_columnconfigure(0, weight=1)
         self.grid({"row": 0, "column": 0, "sticky": NSEW})

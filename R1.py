@@ -16,6 +16,8 @@
     (b) caso tenha solução s, a encontra através do método geométrico e imprime essa senha.
 '''
 
+from threading import Thread
+
 
 def mdc(p, q):      # função auxiliar recursiva que retorna o MDC entre dois inteiros
     r = p % q
@@ -39,8 +41,16 @@ def checa_mdc(m, n):
     return flag, ret
 
 
+# chamada de thread para evitar travamento da GUI enquanto calculando a solução pelo
+# método geométrico; dependendo do tamanho da matriz, o processamento pode
+# consumir muito tempo.
+def metodo_geometrico(a, b, m, n, callback):
+    thread = Thread(target=metodo_geometrico_thread, args=(a, b, m, n, callback))
+    thread.start()
+
+
 #  (b) simulação de preenchimento de matriz m X n para mimetizar o método geométrico
-def metodo_geometrico(a, b, m, n):
+def metodo_geometrico_thread(a, b, m, n, callback):
     x = y = s = 0
     while 1:
         #  print("(x, y) = (%d, %d)" % (x, y))  # debug
@@ -60,7 +70,7 @@ def metodo_geometrico(a, b, m, n):
         if y == n:
             y = 0
 
-    return "Solução: s = %d" % s
+    callback("Solução: s = %d" % s)
 
 
 
