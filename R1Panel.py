@@ -72,11 +72,12 @@ class R1Panel:
             return
 
         self.text.append_text("\ns ≡ %d (mod %d)" % (a, m))
-        self.text.append_text("\ns ≡ %d (mod %d)" % (b, n))
+        self.text.append_text("\ns ≡ %d (mod %d)\n" % (b, n))
         flag, txt = R1.checa_mdc(m, n)
         self.text.append_text("\n" + txt)
         if flag:
-            self.text.append_text("\n...calculando...dependendo das entradas, isso pode levar alguns minutos...")
-            self.text.append_text("\n" + R1.metodo_geometrico(a, b, m, n))
-        self.text.append_text("\n" + "_"*50 + "\n")
+            self.text.append_text("\n\ndependendo das entradas, isso pode levar alguns minutos\n")
+            self.text.append_text("...calculando...\n")
+            self.text.append_text(R1.metodo_geometrico(a, b, m, n))
+        self.text.append_text("\n" + "_"*60 + "\n")
 
