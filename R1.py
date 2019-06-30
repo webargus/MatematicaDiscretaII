@@ -46,6 +46,7 @@ def checa_mdc(m, n):
 # consumir muito tempo.
 def metodo_geometrico(a, b, m, n, callback):
     thread = Thread(target=metodo_geometrico_thread, args=(a, b, m, n, callback))
+    thread.daemon = True
     thread.start()
 
 

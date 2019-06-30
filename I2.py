@@ -61,6 +61,7 @@ def check_prime_thread(n, option, callback):
         thread = Thread(target=_is_prime_thread, args=(n, callback))
     else:
         thread = Thread(target=is_prime_naif_thread, args=(n, callback))
+    thread.daemon = True
     thread.start()
 
 
