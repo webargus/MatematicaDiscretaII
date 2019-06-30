@@ -11,7 +11,7 @@
     Escreva um programa que recebe um inteiro n > 1 e que verifica, através de divisões
     sucessivas se este inteiro é um número primo.
 
-    OBS: por falta de uma definição precisa do que seja o método ingênuo, implementamos duas
+    OBS: Em dúvida quanto a uma definição precisa do que seja o método ingênuo, implementamos duas
     funções, is_prime e is_prime_naif; ambas verificam a primalidade através de divisões
     sucessivas, sendo que a primeira (is_prime) descarta a verificação dos pares, testa a
     divisibilidade apenas por inteiros ímpares e executa a verificação somente até a raiz quadrada
