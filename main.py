@@ -56,9 +56,19 @@ class Gui(Frame):
         except OSError:
             print(OSError.args)
         self.text_widget.clear()
+        ln = 1
+        highlight_marks = []
         for line in handle.readlines():
+            if line.strip() == "# .":
+                highlight_marks.append(ln)
             self.text_widget.append_text(line)
+            ln += 1
         handle.close()
+        for i in range(0, len(highlight_marks) - 1, 2):
+            st = highlight_marks[i]
+            end = highlight_marks[i+1]
+            self.text_widget.tag_add("hm%d" % st, "%d.0" % st, "%d.0" % (end + 1))
+            self.text_widget.tag_config("hm%d" % st, font=("Arial", 10, "bold"), background="#FFE899")
 
 
 if __name__ == '__main__':

@@ -80,7 +80,7 @@ class R1Panel:
             self.text.append_text("\n\ndependendo das entradas, isso pode levar alguns minutos\n")
             self.text.append_text("...calculando...\n")
             self.btn.configure(state="disabled")
-            R1.metodo_geometrico(a, b, m, n, self.callback)
+            R1.metodo_geometrico_thread(a, b, m, n, self.callback)
         else:
             self.text.append_text("\n" + "_" * 55 + "\n")
 

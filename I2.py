@@ -20,6 +20,7 @@
 
 from threading import  Thread
 
+
 # função auxiliar para verificar se um inteiro é primo
 # algoritmo seletivo(ingênuo?): descarta o teste de divisibilidade quando o inteiro é par e
 # verifica divisibilidade por inteiros ímpares somente até a raiz quadrada do número
@@ -39,7 +40,9 @@ def is_prime(nn):
 def is_prime_naif(nn):
     if nn == 2:     # retorna True pois 2 é primo
         return True
-    for div in range(3, nn):     # verifica divisibilidade desde 3 até n-1, inclusive pelos pares
+    if nn % 2 == 0:
+        return False    # descarta os pares
+    for div in range(3, nn):     # verifica divisibilidade desde 3 até n-1
         if nn % div == 0:
             return False
     return True

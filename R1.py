@@ -1,3 +1,4 @@
+
 '''
     UFRPE - BSI 2019.1
     Matemática Discreta - prof. Marcelo Gama
@@ -15,6 +16,7 @@
     (a) verifica se o sistema tem solução e informa isso ao usuário;
     (b) caso tenha solução s, a encontra através do método geométrico e imprime essa senha.
 '''
+
 
 from threading import Thread
 
@@ -44,14 +46,14 @@ def checa_mdc(m, n):
 # chamada de thread para evitar travamento do processamento enquanto calculando a solução pelo
 # método geométrico; dependendo do tamanho da matriz, o processamento pode
 # consumir muito tempo.
-def metodo_geometrico(a, b, m, n, callback):
-    thread = Thread(target=metodo_geometrico_thread, args=(a, b, m, n, callback))
+def metodo_geometrico_thread(a, b, m, n, callback):
+    thread = Thread(target=metodo_geometrico, args=(a, b, m, n, callback))
     thread.daemon = True
     thread.start()
 
 
 #  (b) simulação de preenchimento de matriz m X n para mimetizar o método geométrico
-def metodo_geometrico_thread(a, b, m, n, callback):
+def metodo_geometrico(a, b, m, n, callback):
     x = y = s = 0
     while 1:
         #  print("(x, y) = (%d, %d)" % (x, y))  # debug
@@ -72,6 +74,7 @@ def metodo_geometrico_thread(a, b, m, n, callback):
             y = 0
 
     callback("Solução: s = %d" % s)
+
 
 
 
