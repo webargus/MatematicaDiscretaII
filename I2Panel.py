@@ -26,22 +26,29 @@ class I2Panel:
 
         form = Frame(wrap, {"padx": 8})
         form.grid({"row": 1, "column": 0, "sticky": NSEW, "pady": 8, "padx": 8})
-        Label(form, {"text": "n: ",
-                     "font": ("Arial", 12)}).grid({"row": 0, "column": 0})
+        Label(form, {"text": "n: ", "font": ("Arial", 12)}).grid({"row": 0, "column": 0})
         self.n = StringVar()
         Entry(form, {"textvariable": self.n}).grid({"row": 0, "column": 1})
         self.radio = IntVar()
-        R1 = Radiobutton(form, text="is_prime", variable=self.radio, value=0, font=("Arial", 12))
-        R1.grid({"row": 0, "column": 2})
-        R2 = Radiobutton(form, text="is_prime_naif", variable=self.radio, value=1, font=("Arial", 12))
-        R2.grid({"row": 0, "column": 3})
+        R1 = Radiobutton(form,
+                         text="is_prime_naif_1",
+                         variable=self.radio,
+                         value=0,
+                         font=("Arial", 12))
+        R1.grid({"row": 1, "column": 0, "columnspan": 2})
+        R2 = Radiobutton(form,
+                         text="is_prime_naif_2",
+                         variable=self.radio,
+                         value=1,
+                         font=("Arial", 12))
+        R2.grid({"row": 1, "column": 3})
         params = {"text": "Ok",
                   "width": 5,
                   "font": ("Arial", 10),
                   "command": self._submit_form
                   }
         self.btn = Button(form, params)
-        self.btn.grid({"row": 0, "column": 4, "padx": 4, "pady": 8, "sticky": W})
+        self.btn.grid({"row": 1, "column": 4, "padx": 4, "pady": 8, "sticky": W})
 
         text = Frame(wrap, {"pady": 8, "padx": 8})
         text.grid({"row": 2, "column": 0, "sticky": NSEW})
